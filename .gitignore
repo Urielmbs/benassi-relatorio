@@ -1,0 +1,9 @@
+.DS_Store
+*.tmp
+*.docx
+*.doc
+*.pdf
+*.xlsx
+*.xls
+*.csv
+.agents/

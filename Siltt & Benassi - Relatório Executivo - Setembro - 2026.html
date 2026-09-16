@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório Executivo Diretoria | Benassi JF & Siltt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #F7F6F2;
+      --card-bg: #FFFFFF;
+      --card-elevated: #FAFAF8;
+      --card-subtle: #F0EDE5;
+      --green-dark: #14392B;
+      --green-main: #1D7A52;
+      --green-light: #E4F0E9;
+      --green-glow: rgba(29, 122, 82, 0.08);
+      --accent-red: #C23B3B;
+      --accent-red-soft: #FDF0F0;
+      --accent-amber: #D9891E;
+      --accent-amber-soft: #FFF8ED;
+      --text-main: #1A1F1C;
+      --text-secondary: #5A6B61;
+      --border: #E8E4DC;
+      --shadow-sm: 0 2px 8px rgba(20, 57, 43, 0.04);
+      --shadow-md: 0 8px 28px rgba(20, 57, 43, 0.08);
+      --shadow-lg: 0 16px 48px rgba(20, 57, 43, 0.10);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-xs: 6px;
+      --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── HEADER ─── */
+    header.top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      background: var(--green-dark);
+      color: #FFF;
+      font-weight: 700;
+      font-size: 0.7rem;
+      padding: 5px 10px;
+      border-radius: var(--radius-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .consultant-tag {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-bar {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      z-index: 999;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green-main), #2AA86A);
+      width: 20%;
+      border-radius: 0 3px 3px 0;
+      transition: width 0.4s var(--ease-out);
+    }
+
+    /* ─── TABS ─── */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      background: var(--card-subtle);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      position: relative;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    .tab-btn:hover {
+      color: var(--green-dark);
+    }
+
+    .tab-btn .tab-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      opacity: 0.5;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tab-btn.active {
+      background: var(--card-bg);
+      color: var(--green-dark);
+      box-shadow: 0 1px 4px rgba(20, 57, 43, 0.08);
+    }
+
+    .tab-btn.active .tab-num {
+      opacity: 1;
+      color: var(--green-main);
+    }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-nav-toggle {
+      display: none;
+      background: var(--card-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      cursor: pointer;
+      gap: 8px;
+      align-items: center;
+      white-space: nowrap;
+      max-width: 220px;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    .mobile-nav-toggle span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .mobile-nav-toggle svg {
+      flex-shrink: 0;
+      pointer-events: none;
+      transition: transform 0.25s var(--ease-out);
+    }
+
+    .mobile-nav-toggle.open svg {
+      transform: rotate(180deg);
+    }
+
+    /* Mobile Backdrop */
+    .mobile-dropdown-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(20, 57, 43, 0.2);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 1040;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease-out), visibility 0.25s;
+    }
+
+    .mobile-dropdown-backdrop.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .mobile-dropdown {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(247, 246, 242, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: var(--shadow-md);
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: translateY(-8px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out), visibility 0.25s;
+    }
+
+    .mobile-dropdown.show {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .mobile-dropdown .tab-btn {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+    }
+
+    /* ─── CONTAINER ─── */
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem 1.5rem;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, #1D5840 60%, #246B4E 100%);
+      border-radius: var(--radius);
+      padding: 2.8rem 3rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(29, 122, 82, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta span:nth-child(2) {
+      opacity: 0.4;
+    }
+
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+      font-size: 2.2rem;
+      color: #FFFFFF;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.8rem;
+      max-width: 760px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    /* ─── TABS CONTENT ─── */
+    .tab-panel {
+      display: none;
+      animation: tabFadeIn 0.35s var(--ease-out);
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes tabFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p,
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
+    /* ─── GRIDS ─── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+      position: relative;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .card.alert-card {
+      border-left: 4px solid var(--accent-red);
+      background: linear-gradient(135deg, var(--accent-red-soft) 0%, var(--card-bg) 40%);
+    }
+
+    .card.accent-card {
+      border-left: 4px solid var(--green-main);
+      background: linear-gradient(135deg, var(--green-glow) 0%, var(--card-bg) 40%);
+    }
+
+    .card.span-2 {
+      grid-column: span 2;
+    }
+
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: var(--radius-xs);
+      margin-bottom: 0.85rem;
+    }
+
+    .badge-red {
+      background: var(--accent-red-soft);
+      color: var(--accent-red);
+    }
+
+    .badge-green {
+      background: var(--green-light);
+      color: var(--green-dark);
+    }
+
+    .badge-amber {
+      background: var(--accent-amber-soft);
+      color: var(--accent-amber);
+    }
+
+    .badge-subtle {
+      background: var(--card-subtle);
+      color: var(--text-secondary);
+    }
+
+    .card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.8rem;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 20px;
+      line-height: 1.55;
+    }
+
+    .card ul li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-main);
+    }
+
+    .card ul.alert-list li::before {
+      background: var(--accent-red);
+    }
+
+    /* ─── CYCLE ─── */
+    .cycle-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cycle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .cycle-header h3 {
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .cycle-wrapper {
+      position: relative;
+    }
+
+    .cycle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      position: relative;
+    }
+
+    .cycle-node {
+      background: var(--card-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      text-align: center;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+      position: relative;
+    }
+
+    .cycle-node:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cycle-node.active-risk {
+      border-color: rgba(194, 59, 59, 0.25);
+      background: linear-gradient(180deg, #FFFBFB 0%, #FFF5F5 100%);
+    }
+
+    .cycle-number {
+      width: 32px;
+      height: 32px;
+      background: var(--green-dark);
+      color: #FFF;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.6rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cycle-node.active-risk .cycle-number {
+      background: var(--accent-red);
+    }
+
+    .cycle-node h4 {
+      font-size: 0.9rem;
+      color: var(--green-dark);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .cycle-node p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Cycle arrows between nodes */
+    .cycle-arrows {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 1rem;
+      padding: 0 2rem;
+    }
+
+    .cycle-arrow-segment {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cycle-arrow-segment svg {
+      color: var(--accent-red);
+      opacity: 0.5;
+    }
+
+    .cycle-loop-label {
+      text-align: center;
+      margin-top: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-red);
+      opacity: 0.65;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .cycle-loop-label::before,
+    .cycle-loop-label::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--accent-red);
+      opacity: 0.3;
+    }
+
+    /* ─── ACCORDIONS ─── */
+    .interactive-accord {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .accord-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+    }
+
+    .accord-item.open {
+      border-color: var(--green-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .accord-header {
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: var(--card-bg);
+      transition: background 0.2s var(--ease-out);
+      user-select: none;
+    }
+
+    .accord-header:hover {
+      background: var(--card-elevated);
+    }
+
+    .accord-header h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .accord-chevron {
+      transition: transform 0.3s var(--ease-out);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    .accord-item.open .accord-chevron {
+      transform: rotate(180deg);
+      color: var(--green-main);
+    }
+
+    .accord-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s var(--ease-out);
+    }
+
+    .accord-content {
+      padding: 1.4rem 1.85rem 1.6rem 1.85rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+      background: var(--card-elevated);
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.75rem 1.4rem 1.75rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(29, 122, 82, 0.35);
+    }
+
+    .testimonial-quote-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1.4rem;
+      font-size: 2.8rem;
+      line-height: 1;
+      color: var(--green-main);
+      opacity: 0.12;
+      font-family: Georgia, serif;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .testimonial-body {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-main);
+      margin-bottom: 1.3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-body mark {
+      background: rgba(29, 122, 82, 0.08);
+      color: var(--green-dark);
+      font-weight: 600;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-main));
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(20, 57, 43, 0.18);
+    }
+
+    .author-info h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+    }
+
+    .author-info span {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      display: block;
+    }
+
+    /* ─── PILLAR CARDS ─── */
+    .pillar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      border-top: 4px solid var(--green-main);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .pillar-card:hover {
+      border-top-color: var(--green-dark);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pillar-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.9rem;
+      width: 48px;
+      height: 48px;
+      background: var(--green-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .pillar-card p {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+
+    .pillar-footer {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--green-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s var(--ease-out);
+    }
+
+    .pillar-card:hover .pillar-footer {
+      gap: 10px;
+    }
+
+    /* ─── MODALS ─── */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(20, 57, 43, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease-out), visibility 0.3s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      max-width: 640px;
+      width: 100%;
+      padding: 2.2rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      transform: scale(0.92) translateY(10px);
+      transition: transform 0.35s var(--ease-spring);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: var(--card-subtle);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .modal-close:hover {
+      background: var(--border);
+      color: var(--text-main);
+    }
+
+    .modal-box .card-badge {
+      margin-bottom: 0.8rem;
+    }
+
+    .modal-box h3 {
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+      color: var(--green-dark);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-content-area {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .modal-content-area ul {
+      margin: 1rem 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .modal-content-area li {
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .modal-content-area li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-main);
+    }
+
+    /* ─── TABLE ─── */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .matrix-table th {
+      background: var(--green-dark);
+      color: rgba(255, 255, 255, 0.9);
+      text-align: left;
+      padding: 1rem 1.3rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: none;
+    }
+
+    .matrix-table td {
+      padding: 1.1rem 1.3rem;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .matrix-table tbody tr {
+      transition: background 0.2s var(--ease-out);
+    }
+
+    .matrix-table tbody tr:hover {
+      background: var(--green-glow);
+    }
+
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .matrix-table td strong {
+      color: var(--green-dark);
+    }
+
+    /* Status badges for table */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .status-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .status-urgent {
+      background: var(--accent-red-soft);
+      color: var(--accent-red);
+    }
+
+    .status-urgent::before {
+      background: var(--accent-red);
+    }
+
+    .status-progress {
+      background: var(--accent-amber-soft);
+      color: var(--accent-amber);
+    }
+
+    .status-progress::before {
+      background: var(--accent-amber);
+      animation: pulse-dot 2s infinite;
+    }
+
+    .status-scheduled {
+      background: var(--green-light);
+      color: var(--green-dark);
+    }
+
+    .status-scheduled::before {
+      background: var(--green-main);
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    /* ─── MINI PROJECT CARDS ─── */
+    .mini-project {
+      background: var(--card-elevated);
+      padding: 1.2rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+
+    .mini-project:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mini-project strong {
+      color: var(--green-dark);
+      font-size: 0.92rem;
+      display: block;
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .mini-project p {
+      font-size: 0.82rem;
+      margin: 0;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer-dock {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+
+    .footer-dock strong {
+      color: var(--green-dark);
+    }
+
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .tab-nav {
+        display: none;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+
+      .grid-2,
+      .grid-3,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .cycle-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cycle-arrows {
+        display: none;
+      }
+
+      .cycle-loop-label {
+        display: none;
+      }
+
+      header.top-bar {
+        padding: 0 1rem;
+      }
+
+      .app-container {
+        padding: 1.5rem 1rem 3rem 1rem;
+      }
+
+      .hero {
+        padding: 2rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .card.span-2 {
+        grid-column: span 1;
+      }
+
+      .consultant-tag {
+        display: none;
+      }
+
+      .footer-dock {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .matrix-table {
+        font-size: 0.8rem;
+      }
+
+      .matrix-table th,
+      .matrix-table td {
+        padding: 0.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .brand-title {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cycle-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body {
+        background: white;
+      }
+
+      header.top-bar {
+        position: static;
+        border-bottom: 2px solid var(--green-dark);
+        backdrop-filter: none;
+      }
+
+      .tab-nav,
+      .mobile-nav-toggle,
+      .progress-bar {
+        display: none !important;
+      }
+
+      .tab-panel {
+        display: block !important;
+        page-break-inside: avoid;
+        margin-bottom: 2rem;
+      }
+
+      .hero {
+        background: var(--green-dark) !important;
+      }
+
+      .card,
+      .cycle-container,
+      .accord-item,
+      .testimonial-card {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+
+      .modal-overlay {
+        display: none !important;
+      }
+
+      .footer-dock {
+        border-top: 2px solid var(--green-dark);
+      }
+
+      .section-header {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top-bar">
+    <div class="brand-group">
+      <span class="brand-badge">Siltt Advisory</span>
+      <span class="brand-title">Benassi Juiz de Fora</span>
+    </div>
+
+    <!-- Desktop tabs -->
+    <nav class="tab-nav" id="desktopTabs">
+      <button class="tab-btn active" onclick="switchTab('tab-visao', this)"><span class="tab-num">01</span> Panorama
+        Geral</button>
+      <button class="tab-btn" onclick="switchTab('tab-diagnostico', this)"><span class="tab-num">02</span> Diagnóstico
+        dos
+        Setores</button>
+      <button class="tab-btn" onclick="switchTab('tab-lideranca', this)"><span class="tab-num">03</span> Treinamento de
+        Lideranças</button>
+      <button class="tab-btn" onclick="switchTab('tab-mentoria', this)"><span class="tab-num">04</span> Mentoria &
+        Marketing</button>
+      <button class="tab-btn" onclick="switchTab('tab-recomendacoes', this)"><span class="tab-num">05</span>
+        Recomendações</button>
+    </nav>
+
+    <!-- Mobile nav toggle -->
+    <button class="mobile-nav-toggle" id="mobileToggle" onclick="toggleMobileNav(event)" aria-label="Menu de navegação" aria-expanded="false">
+      <span id="mobileTabLabel">01 Panorama Geral</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+
+    <div class="consultant-tag">Uriel Zaidan Silveira</div>
+  </header>
+
+  <!-- Mobile dropdown backdrop & container -->
+  <div class="mobile-dropdown-backdrop" id="mobileBackdrop" onclick="closeMobileNav()"></div>
+  <div class="mobile-dropdown" id="mobileDropdown">
+    <button class="tab-btn active" onclick="switchTabMobile('tab-visao', this, '01 Panorama Geral')"><span
+        class="tab-num">01</span> Panorama Geral</button>
+    <button class="tab-btn" onclick="switchTabMobile('tab-diagnostico', this, '02 Diagnóstico dos Setores')"><span
+        class="tab-num">02</span> Diagnóstico dos Setores</button>
+    <button class="tab-btn" onclick="switchTabMobile('tab-lideranca', this, '03 Treinamento de Lideranças')"><span
+        class="tab-num">03</span> Treinamento de Lideranças</button>
+    <button class="tab-btn" onclick="switchTabMobile('tab-mentoria', this, '04 Mentoria & Marketing')"><span
+        class="tab-num">04</span> Mentoria & Marketing</button>
+    <button class="tab-btn" onclick="switchTabMobile('tab-recomendacoes', this, '05 Recomendações')"><span
+        class="tab-num">05</span> Recomendações</button>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="app-container">
+    <section class="hero">
+      <div class="hero-meta">
+        <span>Relatório Executivo</span>
+        <span>•</span>
+        <span>Período: Maio – Setembro 2026</span>
+      </div>
+      <h1>Assessoria Estratégica em Gestão de Pessoas</h1>
+      <p>Consolidação do diagnóstico da operação, das formações de liderança, da
+        mentoria executiva, da equipe de RH e
+        recomendações de soluções para os desafios atuais.</p>
+    </section>
+
+    <!-- TAB 1: PANORAMA GERAL -->
+    <div id="tab-visao" class="tab-panel active">
+      <div class="section-header">
+        <h2 class="section-title">O Diagnóstico da Operação</h2>
+        <p>O mapa de como a carência de pessoal na base drena a capacidade de gestão comercial da
+          empresa.</p>
+      </div>
+
+      <div class="cycle-container">
+        <div class="cycle-header">
+          <h3>O Efeito Colateral da Sobrecarga dos Líderes</h3>
+          <span class="card-badge badge-red">Alerta Humano & Comercial</span>
+        </div>
+        <div class="cycle-wrapper">
+          <div class="cycle-grid">
+            <div class="cycle-node active-risk">
+              <div class="cycle-number">1</div>
+              <h4>Vagas Abertas & Evasão</h4>
+              <p>Escassez de mão de obra e pacote salarial/benefícios abaixo da concorrência direta geram perda contínua
+                de colaboradores.</p>
+            </div>
+            <div class="cycle-node active-risk">
+              <div class="cycle-number">2</div>
+              <h4>Desvio de Função</h4>
+              <p>Supervisores e encarregados são sugados para a operação braçal: descarregar caminhões, montar bancas e
+                repor caixas.</p>
+            </div>
+            <div class="cycle-node active-risk">
+              <div class="cycle-number">3</div>
+              <h4>Defasagem na Gestão</h4>
+              <p>Sem tempo para análise de quebras, controle de perdas, conferência minuciosa ou alimentação de dados
+                gerenciais no sistema.</p>
+            </div>
+            <div class="cycle-node active-risk">
+              <div class="cycle-number">4</div>
+              <h4>Estresse & Atrito</h4>
+              <p>Cansaço crônico reduz a paciência com novatos; a pressão excessiva acelera novos pedidos de demissão na
+                base.</p>
+            </div>
+          </div>
+          <!-- Arrows connecting the cycle -->
+          <div class="cycle-arrows">
+            <div class="cycle-arrow-segment">
+              <svg width="40" height="20" viewBox="0 0 40 20">
+                <path d="M0 10 L30 10 M24 4 L32 10 L24 16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="cycle-arrow-segment">
+              <svg width="40" height="20" viewBox="0 0 40 20">
+                <path d="M0 10 L30 10 M24 4 L32 10 L24 16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="cycle-arrow-segment">
+              <svg width="40" height="20" viewBox="0 0 40 20">
+                <path d="M0 10 L30 10 M24 4 L32 10 L24 16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="cycle-loop-label">Ciclo se repete — retroalimenta o nó 1</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card accent-card">
+          <span class="card-badge badge-green">Fortalezas Identificadas</span>
+          <h3>Cultura & Solidez</h3>
+          <p>A Benassi possui diferenciais raros no mercado que vão além do varejo de hortifrúti que devem ser
+            preservados e valorizados:</p>
+          <ul>
+            <li><strong>Compromisso financeiro exemplar:</strong> pontualidade rigorosa de salários e estabilidade.</li>
+            <li><strong>Flexibilidade humana:</strong> abertura para atender necessidades pessoais dos colaboradores.
+            </li>
+            <li><strong>Veteranos leais:</strong> equipe com anos de casa e profundo domínio técnico de produto.</li>
+          </ul>
+        </div>
+        <div class="card alert-card">
+          <span class="card-badge badge-red">Fator Crítico</span>
+          <h3>Salários & Benefícios</h3>
+          <p>A diferença de atratividade financeira comparada aos concorrentes diretos e indiretos é o principal ponto
+            frágil:</p>
+          <ul class="alert-list">
+            <li>Candidatos recusam vagas pelo valor líquido ou ausência de ticket alimentação competitivo.</li>
+            <li>Fuga de bons colaboradores já treinados por diferenças salariais de pequena margem.</li>
+            <li>O custo invisível do turnover supera o investimento de ajuste do pacote.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1.25rem;">
+        <span class="card-badge badge-subtle">NR-01 & Clima</span>
+        <h3>Prevenção de Colapso</h3>
+        <p>Embora os prazos da NR-01 tenham sido prorrogados, o maior risco é a saúde da equipe:</p>
+        <ul>
+          <li>Líderes operam em constante estado de vigília e sobrecarga psicológica.</li>
+          <li>Dificuldade expressiva de desconexão e descanso fora da jornada de trabalho.</li>
+          <li>Necessidade urgente de proteger a equipe antes que o esgotamento comprometa operações-chave.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB 2: DIAGNÓSTICO DOS EIXOS -->
+    <div id="tab-diagnostico" class="tab-panel">
+      <div class="section-header">
+        <h2 class="section-title">Diagnóstico Setorial: RH & Operação</h2>
+        <p class="section-desc">Análise de maturidade, dores relatadas e dinâmicas relacionais entre loja e escritório.
+        </p>
+      </div>
+      <div class="grid-2" style="margin-bottom: 1.5rem;">
+        <div class="card">
+          <span class="card-badge badge-subtle">Cenário interno</span>
+          <h3>Equipe de RH: Dores e Desafios</h3>
+          <p>A equipe atua com profunda dedicação e lealdade à cultura da empresa, porém enfrenta barreiras severas:</p>
+          <ul>
+            <li><strong>Sensação de "enxugar gelo":</strong> alto volume de currículos triados e entrevistas realizadas,
+              mas baixa retenção devido a restrições salariais.</li>
+            <li><strong>Invisibilidade percebida:</strong> sentimento de que o trabalho do setor não é compreendido nem
+              valorizado pelas demais áreas.</li>
+            <li><strong>Limitação em Competências técnicas:</strong> baixa informatização do setor e pouco uso de dados
+              para insights e decisões.</li>
+            <li><strong>Carência de liderança sênior operacional:</strong> falta no setor uma postura proativa de
+              liderança para construção de relacionamento com outros setores e de soluções estratégicas.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="card-badge badge-subtle">Cenário entre setores</span>
+          <h3>Interface Loja vs. RH</h3>
+          <p>A relação entre as lideranças de loja e a equipe de Recursos Humanos reflete a pressão por quadros
+            completos:</p>
+          <ul>
+            <li><strong>Sinergia parcial:</strong> polos de cooperação mútua versus episódios de atrito por atraso de
+              reposição e desgastes na comunicação.</li>
+            <li><strong>Desalinhamento de expectativas:</strong> o supervisor cobra rapidez na reposição, enquanto o RH
+              esbarra na atratividade de mercado e na alta taxa de turnover.</li>
+            <li><strong>Falta de SLA claro:</strong> necessidade de fluxo transparente sobre candidatos encaminhados e
+              reprovados.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card alert-card">
+        <span class="card-badge badge-red">Fator de Quebra de Engajamento Interno</span>
+        <h3>Transparência em Promoções e Acúmulo de Funções</h3>
+        <p>Relatos consistentes indicam acúmulo de funções sem contrapartida e a percepção de promoções decididas por
+          política e não por competência. Ainda não é uma urgência, mas já é possível identificar que este será um fator
+          de quebra de engajamento interno. É crucial considerar na institucionalização de um Plano de Cargos e Salários
+          com
+          critérios transparentes.</p>
+      </div>
+    </div>
+
+    <!-- TAB 3: TREINAMENTO DE LIDERANÇAS -->
+    <div id="tab-lideranca" class="tab-panel">
+      <div class="section-header">
+        <h2 class="section-title">Formação de Lideranças & Academia Benassi (piloto)</h2>
+        <p>Resultados dos workshops com toda a equipe de Supervisores e Encarregados, feedbacks
+          qualitativos e aplicação de
+          ferramentas.</p>
+      </div>
+      <div class="grid-3" style="margin-bottom:1.5rem;">
+        <div class="card">
+          <span class="card-badge badge-green">Engajamento Comprovado</span>
+          <h3>Receptividade & Avaliação</h3>
+          <ul>
+            <li>Alta taxa de adesão e resposta aos formulários pós-treinamento aplicados digitalmente.</li>
+            <li>Timidez no momento de perguntas orais compensada por depoimentos profundos por escrito.</li>
+            <li>Reconhecimento espontâneo de que os conteúdos tocaram na dor real do cotidiano.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="card-badge badge-subtle">O Desafio Central</span>
+          <h3>O Hortifrúti vs. As Pessoas</h3>
+          <ul>
+            <li>O domínio técnico das atividades é muito bom; o grande gargalo é a <strong>liderança humana</strong>.
+            </li>
+            <li>Dificuldade aguda de adaptar linguagem para colaboradores da nova geração (Gen Z).</li>
+            <li>Estresse acumulado mina a paciência da liderança para ensinar novos funcionários.</li>
+          </ul>
+        </div>
+        <div class="card accent-card">
+          <span class="card-badge badge-green">Ferramenta Prática</span>
+          <h3>Comunicação Não Violenta (CNV)</h3>
+          <ul>
+            <li>Compreensão de que cobranças agressivas apenas aceleram os pedidos de demissão na loja.</li>
+            <li>Separação entre observação de fatos objetivos e julgamentos morais de valor.</li>
+            <li>Segurança em cobrar metas e padrões operacionais com rigor técnico e respeito humano.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="interactive-accord">
+        <div class="accord-item open">
+          <div class="accord-header" onclick="toggleAccord(this)">
+            <h4><span>💬</span> O dilema da Nova Geração no Chão de Loja</h4>
+            <span class="accord-chevron">▼</span>
+          </div>
+          <div class="accord-body">
+            <div class="accord-content">
+              Encarregados relatam que os jovens entram pensando em sair caso surja qualquer oferta com benefício
+              ligeiramente superior, até mesmo trabalhos informais. Pressionar essa geração resulta em evasão
+              imediata. A CNV oferece um roteiro
+              seguro para o líder combinar horários e padrões sem criar conflitos.
+            </div>
+          </div>
+        </div>
+        <div class="accord-item">
+          <div class="accord-header" onclick="toggleAccord(this)">
+            <h4><span>📊</span> Dados e Relatórios Gerenciais Comprometidos</h4>
+            <span class="accord-chevron">▼</span>
+          </div>
+          <div class="accord-body">
+            <div class="accord-content">
+              Com supervisores ocupando a maior parte do dia descarregando caminhões e montando bancas por falta de
+              promotores, tarefas estratégicas como conferência de rupturas de estoque, pedidos comerciais no sistema e
+              controle de quebras ficam para o final do turno, gerando riscos de prejuízo invisível.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEPOIMENTOS DOS SUPERVISORES -->
+      <div class="section-header" style="margin-top: 2.5rem; margin-bottom: 1.2rem;">
+        <h3 class="section-title" style="font-size: 1.25rem;">
+          <span>🗣️</span> Vozes da Liderança: Depoimentos de Campo
+        </h3>
+        <p>Avaliações qualitativas compartilhadas pelos supervisores após os ciclos de capacitação.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">“</div>
+          <div class="testimonial-body">
+            Destacou que a iniciativa é <mark>“de extrema importância para que líderes possam ter momentos de reflexão e
+              novos conhecimentos”</mark>.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">JF</div>
+            <div class="author-info">
+              <h4>Janerson Fernando</h4>
+              <span>Supervisor de Loja</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">“</div>
+          <div class="testimonial-body">
+            Enfatizou que os temas abordados foram assertivos e <mark>“caíram como uma luva para os encarregados,
+              ensinando a lidar com situações do dia a dia para amenizar o estresse e a ansiedade”</mark>.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">RA</div>
+            <div class="author-info">
+              <h4>Roberth Alves</h4>
+              <span>Supervisor de Loja</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">“</div>
+          <div class="testimonial-body">
+            Avaliou os encontros como <mark>“produtivos e capacitantes para manter o equilíbrio nos momentos difíceis de
+              trabalho”</mark>.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">JL</div>
+            <div class="author-info">
+              <h4>João Lucas Alves</h4>
+              <span>Supervisor de Loja</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">“</div>
+          <div class="testimonial-body">
+            Reforçou que a capacitação se mostrou <mark>“super produtiva por tratar diretamente as dificuldades reais do
+              chão de loja, esclarecendo e ampliando o conhecimento para dar continuidade à gestão de pessoas”</mark>.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">LO</div>
+            <div class="author-info">
+              <h4>Lucas Oliveira</h4>
+              <span>Supervisor de Loja</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: MENTORIA & MARKETING -->
+    <div id="tab-mentoria" class="tab-panel">
+      <div class="section-header">
+        <h2 class="section-title">Evolução Executiva & Interface de Marketing</h2>
+        <p>Desenvolvimento de Ana Elisa Amorim na atuação executiva dentro da empresa, promoção da marca empregadora,
+          gestão de eventos e construção de relações de
+          confiança com setores e parceiros estratégicos.</p>
+      </div>
+      <div class="grid-2" style="margin-bottom: 1.5rem;">
+        <div class="card accent-card">
+          <span class="card-badge badge-green">Maturidade Corporativa</span>
+          <h3>Evolução da Postura Executiva</h3>
+          <ul>
+            <li><strong>Visão Estratégica:</strong> dedicação na construção de soluções que agreguem valor cultural,
+              reputação e geração de receita.</li>
+            <li><strong>Gestão de Suprimentos & Eventos:</strong> coordenação estruturada de fornecedores, cronogramas e
+              orçamentos.</li>
+            <li><strong>Diplomacia Corporativa:</strong> conquista de influência legítima com líderes de lojas, setores
+              e funcionários
+              por meio de entregas concretas e de alto impacto no clima organizacional.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="card-badge badge-subtle">Governança por Dados</span>
+          <h3>Planejamento Orçamentário 2027</h3>
+          <ul>
+            <li>Mapeamento minucioso dos custos executados em 2026 para embasar o Planejamento de MKT 2027.</li>
+            <li>Construção de um orçamento enxuto financeiramente, operando no princípio de Pareto (baixo custo e alto
+              impacto).</li>
+            <li>Integração progressiva com ferramentas de dados para medir o retorno das ações.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <span class="card-badge badge-green">Sinergia Estratégica</span>
+        <h3>Projetos Interdisciplinares sob Liderança de Ana Elisa</h3>
+        <p>Pela capacidade executiva e visão integrada, Ana posiciona-se como condutora natural de projetos
+          transversais:</p>
+        <div class="grid-3" style="margin-top:1.2rem;">
+          <div class="mini-project">
+            <strong>Marca Empregadora</strong>
+            <p>Ações de valorização interna e posicionamento regional da Benassi como excelente local de trabalho.</p>
+          </div>
+          <div class="mini-project">
+            <strong>Parcerias Institucionais</strong>
+            <p>Mutirões estratégicos de currículos (ex: ONG Mão Amiga) associados à visibilidade comunitária da marca.
+            </p>
+          </div>
+          <div class="mini-project">
+            <strong>Academia Benassi (proposta)</strong>
+            <p>Universidade Corporativa para treinar habilidades técnicas e comportamentais na equipe, documentar
+              processos e preservar a cultura.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: RECOMENDAÇÕES -->
+    <div id="tab-recomendacoes" class="tab-panel">
+      <div class="section-header">
+        <h2 class="section-title">Recomendações Estratégicas à Diretoria</h2>
+        <p>Quatro eixos prioritários de decisão com maior impacto potencial nos resultados do
+          negócio.</p>
+      </div>
+      <div class="grid-4" style="margin-bottom:2rem;">
+        <div class="pillar-card" onclick="openModal('modal-salarios')">
+          <div>
+            <div class="pillar-icon">💰</div>
+            <h3>1. Salários & Benefícios</h3>
+            <p>Estudo urgente de viabilidade financeira para reestruturação do pacote com foco em ticket alimentação e
+              bonificação.</p>
+          </div>
+          <div class="pillar-footer">Ver mais detalhes →</div>
+        </div>
+        <div class="pillar-card" onclick="openModal('modal-lideranca-rh')">
+          <div>
+            <div class="pillar-icon">👔</div>
+            <h3>2. Liderança de RH</h3>
+            <p>Inserção de um Gerente de RH com experiência prática de varejo para liderar o nível operacional e mediar
+              com a diretoria.</p>
+          </div>
+          <div class="pillar-footer">Ver mais detalhes →</div>
+        </div>
+        <div class="pillar-card" onclick="openModal('modal-academia')">
+          <div>
+            <div class="pillar-icon">🎓</div>
+            <h3>3. Academia Benassi</h3>
+            <p>Institucionalização da Universidade Corporativa para padronizar processos operacionais e valorizar
+              veteranos da casa.</p>
+          </div>
+          <div class="pillar-footer">Ver mais detalhes →</div>
+        </div>
+        <div class="pillar-card" onclick="openModal('modal-parcerias')">
+          <div>
+            <div class="pillar-icon">🤝</div>
+            <h3>4. Parcerias Estratégicas</h3>
+            <p>Convênios contínuos com ONGs, associações e órgãos locais para captação qualificada e reforço da marca
+              empregadora.</p>
+          </div>
+          <div class="pillar-footer">Ver mais detalhes →</div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Ação Estratégica</th>
+              <th>Responsável / Envolvidos</th>
+              <th>Prazo / Status</th>
+              <th>Entregável Esperado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Abertura de Estudo de Impacto de Benefícios</strong></td>
+              <td>Diretoria, Financeiro & Contabilidade</td>
+              <td><span class="status-badge status-urgent">Imediato (Setembro)</span></td>
+              <td>Cenários de viabilidade financeira do Ticket Alimentação vs. Custo do Turnover.</td>
+            </tr>
+            <tr>
+              <td><strong>Seleção da Nova Liderança de Recursos Humanos</strong></td>
+              <td>Siltt (hunting, triagem e pré seleção) & Diretoria (entrevistas e seleção)</td>
+              <td><span class="status-badge status-progress">Em andamento</span></td>
+              <td>Contratação de perfil com vivência de operação e gestão de pessoas em empresas de médio/grande porte.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Kick-off e Estruturação da Academia Benassi</strong></td>
+              <td>Ana Elisa Amorim (líder do projeto), Siltt (orientação), TI (infraestrutura) e Agência de MKT
+                (execução)</td>
+              <td><span class="status-badge status-scheduled">Outubro / 2026</span></td>
+              <td>Gravação dos primeiros vídeos de integração e compilação dos POPs visuais na plataforma de cursos.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Apresentação do Planejamento de MKT 2027</strong></td>
+              <td>Ana Elisa Amorim & Siltt</td>
+              <td><span class="status-badge status-scheduled">Novembro / 2026</span></td>
+              <td>Orçamento anual consolidado por centro de custo e calendário de ações.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer-dock">
+      <div><strong>Siltt & Benassi Juiz de Fora</strong> — Consultoria em Gestão de Pessoas & Estratégia Executiva</div>
+    </div>
+  </div>
+
+  <!-- MODAIS -->
+  <div id="modal-salarios" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-salarios-title"
+    onclick="closeModalOnBackdrop(event, this)">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Fechar" onclick="closeModal('modal-salarios')">✕</button>
+      <span class="card-badge badge-red">Prioridade Alta</span>
+      <h3 id="modal-salarios-title">1. Estudo de Viabilidade: Salários e Benefícios</h3>
+      <div class="modal-content-area">
+        <p>A escassez de candidatos que aceitam as vagas operacionais e a evasão de colaboradores qualificados têm
+          gerado um custo invisível, mas extremamente oneroso para a empresa.</p>
+        <ul>
+          <li><strong>O Custo Invisível:</strong> Encargos rescisórios sucessivos, perda de mercadoria por manuseio
+            indevido de novatos, exaustão física da supervisão e perda de faturamento por bancas mal administradas.</li>
+          <li><strong>Proposta:</strong> Simular cenários de reajuste no ticket-alimentação e bonificação por metas de
+            quebra de mercadoria sustentado por indicadores
+            de capital humano, como redução de absenteísmo, presenteísmo e demissões evitadas.</li>
+          <li><strong>Resultado Esperado:</strong> Aumento na taxa de conversão das entrevistas do RH e
+            retenção dos promotores com potencial (até possível recuperação de funcionários).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-lideranca-rh" class="modal-overlay" role="dialog" aria-modal="true"
+    aria-labelledby="modal-lideranca-title" onclick="closeModalOnBackdrop(event, this)">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Fechar" onclick="closeModal('modal-lideranca-rh')">✕</button>
+      <span class="card-badge badge-green">Gestão Tática</span>
+      <h3 id="modal-lideranca-title">2. Nova Liderança Operacional para o RH</h3>
+      <div class="modal-content-area">
+        <p>A atual equipe de RH é trabalhadora e dedicada, mas carece da tração de uma liderança executiva de mercado
+          para
+          superar os processos operacionais e implementar uma influência ativa na empresa.</p>
+        <ul>
+          <li><strong>Papel da Liderança:</strong> Atuar como facilitadora, dialogando de igual para igual com
+            os supervisores de loja e prestando contas de indicadores à Miriam.</li>
+          <li><strong>Liderar iniciativas de Pessoas:</strong> Assumir a gestão de dados do setor, trazer insights e
+            propostas de intervenções com foco na melhoria dos indicadores e na cultura da empresa.</li>
+          <li><strong>Status:</strong> Processo de caça de talentos e triagem de indicações já iniciado pela Siltt
+            Advisory para
+            validação com a diretoria.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-academia" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-academia-title"
+    onclick="closeModalOnBackdrop(event, this)">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Fechar" onclick="closeModal('modal-academia')">✕</button>
+      <span class="card-badge badge-subtle">Cultura & Treinamento</span>
+      <h3 id="modal-academia-title">3. Lançamento da Academia Benassi</h3>
+      <div class="modal-content-area">
+        <p>A Universidade Corporativa da Benassi centralizará todo o capital intelectual construído nos mais de 30 anos
+          de história da rede.</p>
+        <ul>
+          <li><strong>Liderança de Projeto:</strong> Condução executiva pela Ana Elisa, conectando a identidade de marca
+            ao treinamento corporativo e às exigências de segurança e saúde do colaborador.</li>
+          <li><strong>Formatos Visuais:</strong> Gravação de pílulas em vídeo e POPs fotográficos rápidos sobre triagem
+            de FLV, cortes padrão de frutas e higiene de bancas.</li>
+          <li><strong>Formação de Líderes:</strong> Aulas de gestão de pessoas com foco em feedback,
+            gestão de conflitos, liderança pelo exemplo e comunicação assertiva.</li>
+          <li><strong>Valorização Interna:</strong> Envolvimento dos encarregados veteranos como instrutores práticos,
+            restaurando o orgulho e o senso de reconhecimento.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-parcerias" class="modal-overlay" role="dialog" aria-modal="true"
+    aria-labelledby="modal-parcerias-title" onclick="closeModalOnBackdrop(event, this)">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Fechar" onclick="closeModal('modal-parcerias')">✕</button>
+      <span class="card-badge badge-green">Marca Empregadora</span>
+      <h3 id="modal-parcerias-title">4. Projeto "Vagas 360" & Parcerias Estratégicas</h3>
+      <div class="modal-content-area">
+        <p>Superar a dependência exclusiva de anúncios convencionais e construir canais sustentáveis de atração em Juiz
+          de Fora e microrregião.</p>
+        <ul>
+          <li><strong>Convênios Institucionais:</strong> Mapeamento de ONGs, centros comunitários, igrejas e órgãos de
+            emprego para encaminhamento direto e contínuo de candidatos.</li>
+          <li><strong>Cases de Sucesso:</strong> A repercussão do mutirão na ONG Mão Amiga provou que a comunidade
+            responde com entusiasmo à marca Benassi quando a oportunidade é levada aos bairros.</li>
+          <li><strong>Formação de Talentos:</strong> Criação de um programa de identificação e desenvolvimento de jovens
+            com potencial
+            para formação acelerada de encarregados de loja.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabMap = {
+      'tab-visao': { index: 0, progress: 20, label: '01 Panorama Geral' },
+      'tab-diagnostico': { index: 1, progress: 40, label: '02 Diagnóstico dos Setores' },
+      'tab-lideranca': { index: 2, progress: 60, label: '03 Treinamento de Lideranças' },
+      'tab-mentoria': { index: 3, progress: 80, label: '04 Mentoria & Marketing' },
+      'tab-recomendacoes': { index: 4, progress: 100, label: '05 Recomendações' }
+    };
+
+    function recalibrateAccordions() {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.accord-item.open .accord-body').forEach(body => {
+          body.style.maxHeight = body.scrollHeight + 'px';
+        });
+      });
+    }
+
+    function switchTab(tabId, el) {
+      document.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('#desktopTabs .tab-btn').forEach(b => b.classList.remove('active'));
+
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+      if (el) el.classList.add('active');
+
+      // Update progress bar & label
+      const info = tabMap[tabId];
+      if (info) {
+        const progressEl = document.getElementById('progressFill');
+        if (progressEl) progressEl.style.width = info.progress + '%';
+        const mobileLabel = document.getElementById('mobileTabLabel');
+        if (mobileLabel && info.label) mobileLabel.textContent = info.label;
+      }
+
+      // Sync mobile dropdown
+      const mobileBtns = document.querySelectorAll('#mobileDropdown .tab-btn');
+      mobileBtns.forEach(b => b.classList.remove('active'));
+      if (info && mobileBtns[info.index]) mobileBtns[info.index].classList.add('active');
+
+      recalibrateAccordions();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchTabMobile(tabId, el, label) {
+      const info = tabMap[tabId];
+      const desktopBtns = document.querySelectorAll('#desktopTabs .tab-btn');
+      const targetBtn = (info && desktopBtns[info.index]) ? desktopBtns[info.index] : null;
+      switchTab(tabId, targetBtn);
+      const mobileLabel = document.getElementById('mobileTabLabel');
+      if (mobileLabel && label) mobileLabel.textContent = label;
+      closeMobileNav();
+    }
+
+    function toggleMobileNav(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const dropdown = document.getElementById('mobileDropdown');
+      const toggle = document.getElementById('mobileToggle');
+      const backdrop = document.getElementById('mobileBackdrop');
+      if (!dropdown || !toggle) return;
+
+      const isOpen = dropdown.classList.contains('show');
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        dropdown.classList.add('show');
+        toggle.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        if (backdrop) backdrop.classList.add('show');
+      }
+    }
+
+    function closeMobileNav() {
+      const dropdown = document.getElementById('mobileDropdown');
+      const toggle = document.getElementById('mobileToggle');
+      const backdrop = document.getElementById('mobileBackdrop');
+      if (dropdown) {
+        dropdown.classList.remove('show');
+        dropdown.removeAttribute('style');
+      }
+      if (toggle) {
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      if (backdrop) {
+        backdrop.classList.remove('show');
+      }
+    }
+
+    // Close mobile nav on click outside
+    document.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('mobileDropdown');
+      const toggle = document.getElementById('mobileToggle');
+      if (dropdown && dropdown.classList.contains('show')) {
+        if (!dropdown.contains(e.target) && !toggle.contains(e.target)) {
+          closeMobileNav();
+        }
+      }
+    });
+
+    function toggleAccord(header) {
+      const item = header.closest('.accord-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('open');
+      const body = item.querySelector('.accord-body');
+      if (!body) return;
+
+      if (isOpen) {
+        body.style.maxHeight = '0';
+        item.classList.remove('open');
+      } else {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    }
+
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    function closeModalOnBackdrop(e, el) {
+      if (e.target === el) {
+        el.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // ESC to close modals and mobile nav
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(m => {
+          m.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+        closeMobileNav();
+      }
+    });
+
+    // Initialize: set accordion open state properly
+    recalibrateAccordions();
+
+    // Adjust heights on window resize
+    window.addEventListener('resize', () => {
+      recalibrateAccordions();
+      if (window.innerWidth > 900) {
+        closeMobileNav();
+      }
+    });
+  </script>
+</body>
+
+</html>
